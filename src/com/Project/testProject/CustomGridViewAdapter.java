@@ -36,7 +36,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<Item> {
 			row = inflater.inflate(layoutResourceId, parent, false);
 
 			holder = new RecordHolder();
-			holder.txtTitle = (TextView) row.findViewById(R.id.item_text);
+			//holder.txtTitle = (TextView) row.findViewById(R.id.item_text);
 			holder.imageItem = (ImageView) row.findViewById(R.id.item_image);
 			row.setTag(holder);
 		} else {
@@ -44,7 +44,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<Item> {
 		}
 
 		Item item = data.get(position);
-		holder.txtTitle.setText(item.getTitle());
+	//	holder.txtTitle.setText(item.getTitle());
 		holder.imageItem.setImageBitmap(item.getImage());
 		return row;
 
