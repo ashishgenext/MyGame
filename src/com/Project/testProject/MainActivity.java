@@ -2,7 +2,7 @@ package com.Project.testProject;
 
 import java.util.ArrayList;
 
-import com.manish.customgridview.R;
+import com.Project.testProject.R;
 
 import android.os.Bundle;
 import android.app.Activity;
