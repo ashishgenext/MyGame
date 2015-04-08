@@ -3,11 +3,14 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
     android:orientation="vertical"
-    android:padding="5dp">
+    android:padding="1dp">
 
     <ImageView
         android:id="@+id/item_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
-
+        android:layout_width="70dp"
+        android:scaleType="center"
+        android:layout_height="70dp" 
+       />
+    
+  
 </LinearLayout>

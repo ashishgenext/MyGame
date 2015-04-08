@@ -7,8 +7,11 @@ import com.Project.testProject.R;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,35 +32,40 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		//set grid view item
-		Bitmap homeIcon = BitmapFactory.decodeResource(this.getResources(), R.drawable.square);
-		Bitmap userIcon = BitmapFactory.decodeResource(this.getResources(), R.drawable.square);
+		Bitmap gridIcon = BitmapFactory.decodeResource(this.getResources(), R.drawable.a);
 		
-		gridArray.add(new Item(homeIcon));
-		gridArray.add(new Item(userIcon));
-		gridArray.add(new Item(homeIcon));
-		gridArray.add(new Item(userIcon));
-		gridArray.add(new Item(homeIcon));
-		gridArray.add(new Item(userIcon));
-		gridArray.add(new Item(homeIcon));
-		gridArray.add(new Item(userIcon));
-		gridArray.add(new Item(homeIcon));
-		gridArray.add(new Item(userIcon));
-		gridArray.add(new Item(homeIcon));
-		gridArray.add(new Item(userIcon));
-		
+		gridArray.add(new Item(gridIcon));
+		gridArray.add(new Item(gridIcon));
+		gridArray.add(new Item(gridIcon));
+		gridArray.add(new Item(gridIcon));
+		gridArray.add(new Item(gridIcon));
+		gridArray.add(new Item(gridIcon));
+		gridArray.add(new Item(gridIcon));
+		gridArray.add(new Item(gridIcon));
+		gridArray.add(new Item(gridIcon));
+		gridArray.add(new Item(gridIcon));
+		gridArray.add(new Item(gridIcon));
+		gridArray.add(new Item(gridIcon));
+		gridArray.add(new Item(gridIcon));
+		gridArray.add(new Item(gridIcon));
+		gridArray.add(new Item(gridIcon));
+		gridArray.add(new Item(gridIcon));
 		
 		gridView = (GridView) findViewById(R.id.gridView1);
 		customGridAdapter = new CustomGridViewAdapter(this, R.layout.row_grid, gridArray);
 		gridView.setAdapter(customGridAdapter);
 		
-		//gridView.setHorizontalSpacing(10);
+		
+		
+		
+		
 		gridView.setOnItemClickListener(new OnItemClickListener(){
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
-				Log.d("debug","spacing" + gridView.getHorizontalSpacing());
+				//Log.d("debug","spacing" + gridView.getHorizontalSpacing());
 				
 			}
 

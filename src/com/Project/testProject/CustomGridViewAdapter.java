@@ -6,6 +6,9 @@ import com.Project.testProject.R;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,13 +34,22 @@ public class CustomGridViewAdapter extends ArrayAdapter<Item> {
 		View row = convertView;
 		RecordHolder holder = null;
 
+	//	Resources r = context.getResources();
+	//	Drawable[] layers = new Drawable[2];
+	//	layers[0] = r.getDrawable(R.drawable.square);
+	//	layers[1] = r.getDrawable(R.drawable.a_32);
+	//	LayerDrawable layerDrawable = new LayerDrawable(layers);
+		
 		if (row == null) {
 			LayoutInflater inflater = ((Activity) context).getLayoutInflater();
 			row = inflater.inflate(layoutResourceId, parent, false);
-
+			row.setBackgroundResource(R.drawable.square);
+			
+			
 			holder = new RecordHolder();
 			//holder.txtTitle = (TextView) row.findViewById(R.id.item_text);
 			holder.imageItem = (ImageView) row.findViewById(R.id.item_image);
+			
 			row.setTag(holder);
 		} else {
 			holder = (RecordHolder) row.getTag();
@@ -46,6 +58,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<Item> {
 		Item item = data.get(position);
 	//	holder.txtTitle.setText(item.getTitle());
 		holder.imageItem.setImageBitmap(item.getImage());
+		//holder.imageItem.setImageDrawable(layerDrawable);
 		return row;
 
 	}
