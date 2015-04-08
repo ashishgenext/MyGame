@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,13 +28,15 @@ public class CustomGridViewAdapter extends ArrayAdapter<Item> {
 		this.layoutResourceId = layoutResourceId;
 		this.context = context;
 		this.data = data;
+		
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		position = 4 ;
 		View row = convertView;
 		RecordHolder holder = null;
-
+	//	Log.d("debug", "msg"+parent.getChildCount());
 	//	Resources r = context.getResources();
 	//	Drawable[] layers = new Drawable[2];
 	//	layers[0] = r.getDrawable(R.drawable.square);
@@ -48,6 +51,8 @@ public class CustomGridViewAdapter extends ArrayAdapter<Item> {
 			
 			holder = new RecordHolder();
 			//holder.txtTitle = (TextView) row.findViewById(R.id.item_text);
+			
+			
 			holder.imageItem = (ImageView) row.findViewById(R.id.item_image);
 			
 			row.setTag(holder);
@@ -57,12 +62,16 @@ public class CustomGridViewAdapter extends ArrayAdapter<Item> {
 
 		Item item = data.get(position);
 	//	holder.txtTitle.setText(item.getTitle());
+		if(parent.getChildCount() == 0){
 		holder.imageItem.setImageBitmap(item.getImage());
+		
 		//holder.imageItem.setImageDrawable(layerDrawable);
+		}
 		return row;
 
 	}
 
+	
 	static class RecordHolder {
 		TextView txtTitle;
 		ImageView imageItem;
