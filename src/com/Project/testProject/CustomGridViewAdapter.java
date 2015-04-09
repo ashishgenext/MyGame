@@ -1,6 +1,7 @@
 package com.Project.testProject;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.Project.testProject.R;
 
@@ -33,10 +34,14 @@ public class CustomGridViewAdapter extends ArrayAdapter<Item> {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		position = 4 ;
+		
+	//	Log.d("debug","pos:"+position);
 		View row = convertView;
 		RecordHolder holder = null;
-	//	Log.d("debug", "msg"+parent.getChildCount());
+		Random random = new Random();
+		int randomNum = random.nextInt((16 - 1) + 1) + 1;
+		
+		//	Log.d("debug", "msg"+parent.getChildCount());
 	//	Resources r = context.getResources();
 	//	Drawable[] layers = new Drawable[2];
 	//	layers[0] = r.getDrawable(R.drawable.square);
@@ -47,7 +52,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<Item> {
 			LayoutInflater inflater = ((Activity) context).getLayoutInflater();
 			row = inflater.inflate(layoutResourceId, parent, false);
 			row.setBackgroundResource(R.drawable.square);
-			
+		//	row.setVisibility(View.GONE);
 			
 			holder = new RecordHolder();
 			//holder.txtTitle = (TextView) row.findViewById(R.id.item_text);
@@ -62,18 +67,19 @@ public class CustomGridViewAdapter extends ArrayAdapter<Item> {
 
 		Item item = data.get(position);
 	//	holder.txtTitle.setText(item.getTitle());
-		if(parent.getChildCount() == 0){
-		holder.imageItem.setImageBitmap(item.getImage());
 		
-		//holder.imageItem.setImageDrawable(layerDrawable);
+		if(randomNum == position){
+		holder.imageItem.setImageBitmap(item.getImage());
 		}
+		//holder.imageItem.setImageDrawable(layerDrawable);
+		
 		return row;
 
 	}
 
 	
 	static class RecordHolder {
-		TextView txtTitle;
+		
 		ImageView imageItem;
 
 	}

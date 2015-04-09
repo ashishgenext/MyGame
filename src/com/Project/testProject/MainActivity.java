@@ -8,16 +8,20 @@ import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.res.Resources;
+import android.gesture.GestureOverlayView;
+import android.gesture.GestureOverlayView.OnGestureListener;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.Toast;
 
 
 @SuppressLint("NewApi")
@@ -55,23 +59,29 @@ public class MainActivity extends Activity {
 		customGridAdapter = new CustomGridViewAdapter(this, R.layout.row_grid, gridArray);
 		gridView.setAdapter(customGridAdapter);
 		
-		
-		
-		
-		
-		gridView.setOnItemClickListener(new OnItemClickListener(){
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				// TODO Auto-generated method stub
-				//Log.d("debug","spacing" + gridView.getHorizontalSpacing());
+		gridView.setOnTouchListener(new OnSwipeTouchListener(this){
+			public void onSwipeTop() {
 				
-			}
+				
+		    }
+		    public void onSwipeRight() {
+		       
+				
+		    }
+		    public void onSwipeLeft() {
+		       
+		    }
+		    public void onSwipeBottom() {
+		        
+		    }
 
-			
+		public boolean onTouch(View v, MotionEvent event) {
+		    return gestureDetector.onTouchEvent(event);
+		}
 		});
+		
+		
 	}
 
-	
+
 }
