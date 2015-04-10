@@ -21,6 +21,8 @@ import android.widget.TextView;
 public class CustomGridViewAdapter extends ArrayAdapter<Item> {
 	Context context;
 	int layoutResourceId;
+	int randomIndex = -1;
+	boolean isDone = true ;
 	ArrayList<Item> data = new ArrayList<Item>();
 
 	public CustomGridViewAdapter(Context context, int layoutResourceId,
@@ -29,17 +31,16 @@ public class CustomGridViewAdapter extends ArrayAdapter<Item> {
 		this.layoutResourceId = layoutResourceId;
 		this.context = context;
 		this.data = data;
-		
+		generateRandomIndex(0,15);
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
-	//	Log.d("debug","pos:"+position);
+		//Log.d("debug","pos:"+position);
 		View row = convertView;
-		RecordHolder holder = null;
-		Random random = new Random();
-		int randomNum = random.nextInt((16 - 1) + 1) + 1;
+		GridModel gridModel = null;
+		
 		
 		//	Log.d("debug", "msg"+parent.getChildCount());
 	//	Resources r = context.getResources();
@@ -53,23 +54,25 @@ public class CustomGridViewAdapter extends ArrayAdapter<Item> {
 			row = inflater.inflate(layoutResourceId, parent, false);
 			row.setBackgroundResource(R.drawable.square);
 		//	row.setVisibility(View.GONE);
-			
-			holder = new RecordHolder();
+			ImageView imageItem  = (ImageView) row.findViewById(R.id.item_image);
+			gridModel = new GridModel(imageItem);
 			//holder.txtTitle = (TextView) row.findViewById(R.id.item_text);
 			
 			
-			holder.imageItem = (ImageView) row.findViewById(R.id.item_image);
+			//holder.imageItem = (ImageView) row.findViewById(R.id.item_image);
 			
-			row.setTag(holder);
+			row.setTag(gridModel);
 		} else {
-			holder = (RecordHolder) row.getTag();
+			gridModel = (GridModel) row.getTag();
 		}
 
 		Item item = data.get(position);
 	//	holder.txtTitle.setText(item.getTitle());
 		
-		if(randomNum == position){
-		holder.imageItem.setImageBitmap(item.getImage());
+		if(randomIndex == position && isDone == true){
+	//	GridModel.imageItem.setImageBitmap(item.getImage());
+		gridModel.getImageId().setImageBitmap(item.getImage());
+			isDone = false ;
 		}
 		//holder.imageItem.setImageDrawable(layerDrawable);
 		
@@ -77,10 +80,14 @@ public class CustomGridViewAdapter extends ArrayAdapter<Item> {
 
 	}
 
-	
-	static class RecordHolder {
+	int generateRandomIndex(int min,int max){
 		
-		ImageView imageItem;
-
+		Random random = new Random();
+		randomIndex = random.nextInt((max - min) + min) +min;
+		return randomIndex ;
 	}
+	
+	
+
+
 }

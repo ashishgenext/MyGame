@@ -61,12 +61,24 @@ public class MainActivity extends Activity {
 		
 		gridView.setOnTouchListener(new OnSwipeTouchListener(this){
 			public void onSwipeTop() {
-				
+				customGridAdapter.generateRandomIndex(0, 15);
+				customGridAdapter.isDone = true ;
+				gridView.setAdapter(customGridAdapter);
 				
 		    }
 		    public void onSwipeRight() {
-		       
-				
+		    	final int numVisibleChildren = gridView.getChildCount();
+		    	final int firstVisiblePosition = gridView.getFirstVisiblePosition();
+
+		    	for ( int i = 0; i < numVisibleChildren; i++ ) {
+		    	    int positionOfView = firstVisiblePosition + i;;
+		    	    //if (positionOfView == positionIamLookingFor) 
+		    	        View view = gridView.getChildAt(i);
+		    	        GridModel model = (GridModel) view.getTag();
+		    	        if(model.getImageId() != null){
+		    	        	Log.d("debug","index "+ model.getImageId().getId());
+		    	        }
+		    	}
 		    }
 		    public void onSwipeLeft() {
 		       
