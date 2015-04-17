@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:background="#f0f0f0">
 
-    <GridView
+ <!-- <GridView
         android:id="@+id/gridView1"
         
         android:layout_width="fill_parent"
@@ -20,4 +20,5 @@
         android:focusable="true"
         android:clickable="true"/>
 
+ -->
 </RelativeLayout>
