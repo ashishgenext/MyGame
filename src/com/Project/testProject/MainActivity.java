@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
 	ImageView imageView1,imageView2,imageView3,imageView4,imageView5,imageView6,imageView7,imageView8,imageView9,imageView10,imageView11,imageView12,imageView13,imageView14,imageView15,imageView16;
 	int randomIndex;
 	
-	ArrayList<String> imageLocation = new ArrayList();
+	ArrayList<Integer> imageLocation = new ArrayList();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +118,7 @@ public class MainActivity extends Activity {
 		
 		tablelayout.setOnTouchListener(new OnSwipeTouchListener(this){
 			public void onSwipeTop() {
-				reorderImages();
+				setImagesLocation();
 			}
 			public void onSwipeRight() {
 
@@ -166,7 +166,7 @@ int generateRandomIndex(int min,int max){
 		return randomIndex ;
 	}
 
-private void reorderImages(){
+private void setImagesLocation(){
 	//Log.d("debug",":"+tablelayout.getChildCount());
 	
 	for(int i=0;i<tablelayout.getChildCount();i++){
@@ -174,11 +174,33 @@ private void reorderImages(){
 		
 		for(int j=0;j<view.getChildCount();j++){
 			ImageView imageV = (ImageView) view.getChildAt(j);
-			imageLocation.add(object)
-			//imageV.getTag(key)
+			imageLocation.add((Integer) imageV.getTag(R.string.image_id));
+			
+			
+			
 		}
 	}
 
+}
+
+private void swipeTop(int start,int end,ArrayList<Integer> imageLocation){
+	while(start <= end){
+		int temp = LinearSearch(start,end,imageLocation);
+		ta imageV = tablelayout.getChildAt(start);
+		
+	}
+}
+
+private int LinearSearch(int start,int end,ArrayList<Integer> imageLocation){
+	int temp = start ;
+	while(start <= end){
+		start =start+4;
+		if(imageLocation.get(start) != null ){
+			
+			return start ;
+		}
+	}
+return temp ;
 }
 
 }
